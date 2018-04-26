@@ -4,7 +4,7 @@ const util = require("./util.js");
 
 const TanzoToken = artifacts.require("TanzoTokenMock");
 
-const TOTAL_SUPPLY = 50000000000000000;
+const TOTAL_SUPPLY = 500000000 * (10 ** 18);
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 
 contract("TanzoToken", function(accounts) {

@@ -18,7 +18,7 @@ contract TanzoToken is StandardToken, DelayedClaimable {
   string public constant symbol = "TZO";
 
   // Define token decimals
-  uint8 public constant decimals = 8;
+  uint8 public constant decimals = 18;
 
   // Define the total token supply
   uint256 public constant TOTAL_SUPPLY = 500000000 * (10 ** uint256(decimals));
