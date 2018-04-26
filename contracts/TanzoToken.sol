@@ -4,18 +4,37 @@ import "./lib/token/ERC20Basic.sol";
 import "./lib/token/StandardToken.sol";
 import "./lib/ownership/DelayedClaimable.sol";
 
+/**
+ * @title Tanzo: The Blockchain-based social marketplace for handmade goods.
+ * @author Tanzo team (https://tanzo.io)
+ * @dev The Tanzo token smart contract based on ERC20
+ */
 contract TanzoToken is StandardToken, DelayedClaimable {
 
+  // Set the token name
   string public constant name = "Tanzo Token";
-  string public constant sybbol = "TZO";
+
+  // Set the token symbol
+  string public constant symbol = "TZO";
+
+  // Define token decimals
   uint8 public constant decimals = 8;
 
-  uint256 public constant INITIAL_SUPPLY = 500000000 * (10 ** uint256(decimals));
+  // Define the total token supply
+  uint256 public constant TOTAL_SUPPLY = 500000000 * (10 ** uint256(decimals));
 
+  /**
+   * @notice Creates the TanzoToken smart contract instance
+   */
   constructor() public {
-    totalSupply_ = INITIAL_SUPPLY;
-    balances[msg.sender] = INITIAL_SUPPLY;
-    emit Transfer(0x0, msg.sender, INITIAL_SUPPLY);
+    // Set token supply
+    totalSupply_ = TOTAL_SUPPLY;
+
+    // Transfer all tokens to the owner
+    balances[msg.sender] = TOTAL_SUPPLY;
+
+    // Emit transfer event
+    emit Transfer(0x0, msg.sender, TOTAL_SUPPLY);
   }
 
   /**
