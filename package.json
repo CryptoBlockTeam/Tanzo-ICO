@@ -7,12 +7,15 @@
     "build": "./node_modules/.bin/truffle compile",
     "migrate": "./node_modules/.bin/truffle migrate",
     "ganache": "./node_modules/.bin/ganache-cli -h 127.0.0.1 -p 8545 -a 10 -e 100 -i 15 -m \"one cook possible system olympic entire lava stage dust casual client member\" --debug",
-    "test": "./node_modules/.bin/truffle test"
+    "test": "./node_modules/.bin/truffle test",
+    "flatten-token": "sol-merger './contracts/Tanzo*.sol' './flat/tokens'",
+    "flatten": "sol-merger './contracts/*.sol' './flat'"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "ganache-cli": "^6.1.0",
+    "sol-merger": "^0.1.2",
     "truffle": "^4.1.7",
     "zeppelin-solidity": "1.8.0"
   },
