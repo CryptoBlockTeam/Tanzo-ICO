@@ -56,4 +56,27 @@ contract TanzoToken is StandardToken, DelayedClaimable {
     }
     return false;
   }
+
+  /**
+   * Temporary freeze tocken transfers
+   */
+  function freezeTransfers () onlyOwner public {
+    if (!transfersFrozen) {
+      transfersFrozen = true;
+      emit Freeze(msg.sender);
+    }
+  }
+
+  /**
+   * Unfreeze token transfers.
+   */
+  function unfreezeTransfers () onlyOwner public {
+    if (transfersFrozen) {
+      transfersFrozen = false;
+      emit Unfreeze(msg.sender);
+    }
+  }
+
+  event Freeze (address indexed owner);
+  event Unfreeze (address indexed owner);
 }

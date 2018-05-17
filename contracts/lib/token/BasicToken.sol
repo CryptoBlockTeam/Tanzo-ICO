@@ -16,11 +16,21 @@ contract BasicToken is ERC20Basic {
 
   uint256 totalSupply_;
 
+  bool transfersFrozen = false;
+
   /**
    * @dev Modifier throws if shortened address.
    */
   modifier onlyPayloadSize(uint numwords) {
     assert(msg.data.length == numwords * 32 + 4);
+    _;
+  }
+
+  /**
+   * @dev Modifier throws if transfers are frozen.
+   */
+  modifier whenNotFrozen() {
+    if (transfersFrozen) revert();
     _;
   }
 
@@ -36,7 +46,7 @@ contract BasicToken is ERC20Basic {
   * @param _to The address to transfer to.
   * @param _value The amount to be transferred.
   */
-  function transfer(address _to, uint256 _value) onlyPayloadSize(2) public returns (bool) {
+  function transfer(address _to, uint256 _value) whenNotFrozen onlyPayloadSize(2) public returns (bool) {
     require(_to != address(0));
     require(_value <= balances[msg.sender]);
 
