@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/truffle compile",
-    "migrate": "./node_modules/.bin/truffle migrate",
-    "ganache": "./node_modules/.bin/ganache-cli -h 127.0.0.1 -p 8545 -a 10 -e 100 -i 15 -m \"one cook possible system olympic entire lava stage dust casual client member\" --debug",
+    "migrate:local": "./node_modules/.bin/truffle migrate --network=development --reset --all",
+    "migrate:ropsten": "./node_modules/.bin/truffle migrate --network=ropsten --reset --all",
+    "migrate:mainnet": "./node_modules/.bin/truffle migrate --network=mainnet",
+    "ganache": "./node_modules/.bin/ganache-cli -h 127.0.0.1 -p 8545 -a 10 -e 100 -i 15 -m \"one cook possible system olympic entire lava stage dust casual client member\"",
     "ganache-rpc": "./node_modules/.bin/testrpc-sc --gasLimit 0xfffffffffff --port 8555 -m \"one cook possible system olympic entire lava stage dust casual client member\"",
     "test": "./node_modules/.bin/truffle test",
     "flatten-token": "sol-merger './contracts/Tanzo*.sol' './flat/tokens'",
@@ -20,7 +22,7 @@
     "sol-merger": "^0.1.2",
     "solidity-coverage": "^0.5.0",
     "truffle": "^4.1.8",
+    "truffle-hdwallet-provider": "0.0.5",
     "zeppelin-solidity": "1.8.0"
-  },
-  "dependencies": {}
+  }
 }
