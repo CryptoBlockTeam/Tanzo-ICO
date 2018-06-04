@@ -23,6 +23,9 @@ contract TanzoToken is StandardToken, DelayedClaimable {
   // Define the total token supply
   uint256 public constant TOTAL_SUPPLY = 500000000 * (10 ** uint256(decimals));
 
+  // Token version
+  string public version = "1.0";
+
   /**
    * @notice Creates the TanzoToken smart contract instance
    */
