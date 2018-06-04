@@ -21,7 +21,7 @@
     "ganache-cli": "^6.1.0",
     "sol-merger": "^0.1.2",
     "solidity-coverage": "^0.5.0",
-    "truffle": "^4.1.8",
+    "truffle": "^4.1.11",
     "truffle-hdwallet-provider": "0.0.5",
     "zeppelin-solidity": "1.8.0"
   }

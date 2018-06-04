@@ -43,18 +43,9 @@ contract TanzoToken is StandardToken, DelayedClaimable {
    * @param _to The address that is claiming ownership of tokens.
    */
   function claimTokens(address _token, address _to) onlyOwner public returns (bool) {
-    if (_token == 0x0) {
-      owner.transfer(address(this).balance);
-      return;
-    }
-
     ERC20Basic token = ERC20Basic(_token);
     uint256 balance = token.balanceOf(this);
-    if (token.transfer(_to, balance)) {
-      emit Transfer(_token, _to, balance);
-      return true;
-    }
-    return false;
+    return token.transfer(_to, balance);
   }
 
   /**
