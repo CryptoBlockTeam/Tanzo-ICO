@@ -3,7 +3,6 @@ pragma solidity ^0.4.23;
 import "./BasicToken.sol";
 import "./ERC20.sol";
 
-
 /**
  * @title Standard ERC20 token
  *
@@ -98,4 +97,42 @@ contract StandardToken is ERC20, BasicToken {
     return true;
   }
 
+  /**
+    * Set allowance for other address and notify
+    *
+    * Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it
+    *
+    * @param _spender The address authorized to spend
+    * @param _value the max amount they can spend
+    * @param _extraData some extra information to send to the approved contract
+    */
+  function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool) {
+    TokenRecipient spender = TokenRecipient(_spender);
+    if (approve(_spender, _value)) {
+      spender.receiveApproval(msg.sender, _value, this, _extraData);
+      return true;
+    }
+  }
+
+  /**
+    * Transfer and notify
+    *
+    * Transfer to `_receiver` `_value` tokens, and then ping the contract about it
+    *
+    * @param _receiver The address to receive tokens
+    * @param _value the amount they will receive
+    * @param _extraData some extra information to send to the transfer contract
+    */
+  function transferAndCall(address _receiver, uint _value, bytes _extraData) public returns (bool) {
+    TokenRecipient receiver = TokenRecipient(_receiver);
+    if (transfer(_receiver, _value)) {
+      receiver.tokenFallback(msg.sender, _value, this, _extraData);
+      return true;
+    }
+  }
+}
+
+interface TokenRecipient {
+  function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) external;
+  function tokenFallback(address _from, uint256 _value, address _token, bytes _extraData) external returns (bool);
 }
