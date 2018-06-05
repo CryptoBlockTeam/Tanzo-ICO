@@ -36,12 +36,12 @@ contract("TanzoToken", function(accounts) {
     let name = await tanzo.name();
     let symbol = await tanzo.symbol();
     let decimals = await tanzo.decimals();
-    
+
     var contractInfo = '';
     contractInfo ="  " + "+".repeat(40);
     contractInfo += "\n  " + "Current date is: " + new Date().toLocaleString("en-US", {timeZone: "UTC"});
     contractInfo += "\n  " + "+".repeat(40);
-    
+
     contractInfo += "\n  Token Name: " + name
     contractInfo += "\n  Token Symbol: " + symbol
     contractInfo += "\n  Decimals: " + decimals
@@ -159,6 +159,10 @@ contract("TanzoToken", function(accounts) {
       describe('when the sender has enough balance', function () {
         const amount = HUNDRED_TOKENS;
 
+        beforeEach(async function () {
+          await tanzo.approve(spender, 0, { from: owner });
+        });
+
         it('emits an approval event', async function () {
           const { logs } = await tanzo.approve(spender, amount, { from: owner });
 
@@ -183,11 +187,11 @@ contract("TanzoToken", function(accounts) {
             await tanzo.approve(spender, 1, { from: owner });
           });
 
-          it('approves the requested amount and replaces the previous one', async function () {
-            await tanzo.approve(spender, amount, { from: owner });
-
+          it('declines approval if the preveious one is not consumed', async function () {
             const allowance = await tanzo.allowance(owner, spender);
-            eq(allowance, amount);
+            eq(allowance, 1);
+
+            await assertRevert(tanzo.approve(spender, amount, { from: owner }));
           });
         });
       });
@@ -195,6 +199,10 @@ contract("TanzoToken", function(accounts) {
       describe('when the sender does not have enough balance', function () {
         const amount = HUNDRED_AND_ONE_TOKENS;
 
+        beforeEach(async function () {
+          await tanzo.approve(spender, 0, { from: owner });
+        });
+
         it('emits an approval event', async function () {
           const { logs } = await tanzo.approve(spender, amount, { from: owner });
 
@@ -219,11 +227,12 @@ contract("TanzoToken", function(accounts) {
             await tanzo.approve(spender, 1, { from: owner });
           });
 
-          it('approves the requested amount and replaces the previous one', async function () {
-            await tanzo.approve(spender, amount, { from: owner });
-
+          it('declines approval if the preveious one is not consumed', async function () {
             const allowance = await tanzo.allowance(owner, spender);
-            eq(allowance, amount);
+            eq(allowance, 1);
+
+            //await tanzo.approve(spender, amount, { from: owner });
+            await assertRevert(tanzo.approve(spender, amount, { from: owner }));
           });
         });
       });
@@ -232,6 +241,10 @@ contract("TanzoToken", function(accounts) {
     describe('when the spender is the zero address', function () {
       const amount = HUNDRED_TOKENS;
       const spender = ZERO_ADDRESS;
+
+      beforeEach(async function () {
+        await tanzo.approve(spender, 0, { from: owner });
+      });
 
       it('approves the requested amount', async function () {
         await tanzo.approve(spender, amount, { from: owner });
@@ -307,6 +320,7 @@ contract("TanzoToken", function(accounts) {
 
       describe('when the spender does not have enough approved balance', function () {
         beforeEach(async function () {
+          await tanzo.approve(spender, 0, { from: owner });
           await tanzo.approve(spender, 99, { from: owner });
         });
 
@@ -333,6 +347,7 @@ contract("TanzoToken", function(accounts) {
       const to = ZERO_ADDRESS;
 
       beforeEach(async function () {
+        await tanzo.approve(spender, 0, { from: owner });
         await tanzo.approve(spender, amount, { from: owner });
       });
 
@@ -360,10 +375,10 @@ contract("TanzoToken", function(accounts) {
 
         await tanzo.claimTokens(to, owner);
 
-        const recipientBalance = await tanzo.balanceOf(owner);        
+        const recipientBalance = await tanzo.balanceOf(owner);
         eq(recipientBalance.toNumber(), TOTAL_SUPPLY);
         const contractBalanceAfter = await tanzo.balanceOf(tanzo.address);
-        eq(contractBalanceAfter.toNumber(), 0);       
+        eq(contractBalanceAfter.toNumber(), 0);
       });
     });
   });
@@ -373,13 +388,13 @@ contract("TanzoToken", function(accounts) {
 
     describe('owner should be able to freeze and unfreeze transfers', async function() {
       const amount = THOUSAND_TOKENS;
-      const to = acc3;      
+      const to = acc3;
 
-      it('freezes transfers', async function() {        
-        await tanzo.freezeTransfers();      
+      it('freezes transfers', async function() {
+        await tanzo.freezeTransfers();
       });
 
-      it('attempt to transfer funds fails', async function () {                
+      it('attempt to transfer funds fails', async function () {
         await assertRevert(tanzo.transfer(to, amount, { from: owner }));
 
         const senderBalance = await tanzo.balanceOf(owner);
@@ -391,8 +406,8 @@ contract("TanzoToken", function(accounts) {
 
       it('unfreezes transfers', async function () {
         await tanzo.unfreezeTransfers();
-      });  
-      
+      });
+
       it('trasnfer passes after unfreeze', async function () {
         await tanzo.transfer(to, amount, { from: owner });
 
@@ -405,28 +420,28 @@ contract("TanzoToken", function(accounts) {
     });
 
     describe('account different than contract owner should not be able to freeze and unfreeze transfers', async function() {
-      const nonowner = acc2;      
+      const nonowner = acc2;
 
-      it('should fail when account different than contract owner attempt to freeze transfers', async function() {   
-        await assertRevert(tanzo.freezeTransfers({ from: nonowner }));        
+      it('should fail when account different than contract owner attempt to freeze transfers', async function() {
+        await assertRevert(tanzo.freezeTransfers({ from: nonowner }));
       });
 
-      it('contract owner freezes transfers - success', async function () {                
+      it('contract owner freezes transfers - success', async function () {
         await tanzo.freezeTransfers();
       });
 
-      it('should fail when account different than contract owner attempt to unfreeze transfers', async function() {   
-        await assertRevert(tanzo.unfreezeTransfers({ from: nonowner }));        
+      it('should fail when account different than contract owner attempt to unfreeze transfers', async function() {
+        await assertRevert(tanzo.unfreezeTransfers({ from: nonowner }));
       });
 
-      it('contract owner unfreezes transfers - success', async function () {                
+      it('contract owner unfreezes transfers - success', async function () {
         await tanzo.freezeTransfers();
-      });     
+      });
     });
   });
 
   describe('Transfer and Claim Ownership', function() {
-    beforeEach(deploy);    
+    beforeEach(deploy);
 
     it('should set claim period for the new owner', async function () {
       await tanzo.transferOwnership(acc2);
@@ -441,7 +456,7 @@ contract("TanzoToken", function(accounts) {
       await tanzo.transferOwnership(acc3);
       await assertRevert(tanzo.setLimits(1001, 1000));
     });
-  
+
     it('should change ownership after successful ownership transfer and claim within defined period', async function () {
       await tanzo.transferOwnership(acc2);
       await tanzo.setLimits(0, 1000);
@@ -455,7 +470,7 @@ contract("TanzoToken", function(accounts) {
       let owner = await tanzo.owner();
       eq(owner, accounts[2]);
     });
-  
+
     it('should not change ownership when the claim is initiated outside defined claim period', async function () {
       await tanzo.transferOwnership(acc1);
       await tanzo.setLimits(100, 110);
