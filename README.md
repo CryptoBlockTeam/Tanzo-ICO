@@ -3,9 +3,12 @@
 This is implementation of ERC20 TZO token.
 
 Implementation supports also following protections:
-#### Freeze and UnFreeze transfers
-#### Short address protection
-#### Claim tokens
+
+* Freeze and UnFreeze transfers
+
+* Short address protection
+
+* Claim tokens
 
 ## Implementation
 
