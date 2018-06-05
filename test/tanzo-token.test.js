@@ -160,8 +160,8 @@ contract("TanzoToken", function(accounts) {
         try {
           await tanzo.transfer(to, THOUSAND_TOKENS, { from: owner });
         }
-        catch (err) { 
-          assert(error.message.search('assert.fail') >= 0); 
+        catch (err) {
+          assert(error.message.search('assert.fail') >= 0);
         }
       });
     });
@@ -213,27 +213,6 @@ contract("TanzoToken", function(accounts) {
         });
       });
 
-      describe('when the sender does not have enough balance', function () {
-        const amount = HUNDRED_TOKENS;
-        const amount1 = HUNDRED_AND_ONE_TOKENS;
-        const to = acc1;
-
-        beforeEach(async function () {
-          await tanzo.approve(spender, 0, { from: owner });
-          await tanzo.transfer(to, amount, { from: owner });
-        });
-
-        describe('when there was no approved amount before', function () {
-          it('reverts due to insufficient funds from spender', async function () {
-            try {
-              await tanzo.approve(spender, amount1, { from: to });
-            }
-            catch (err) {
-              assert(error.message.search('assert.fail') >= 0);
-            }
-          });
-        });
-      });
     });
 
     describe('when the spender is the zero address', function () {
@@ -367,8 +346,8 @@ contract("TanzoToken", function(accounts) {
         try {
           await (tanzo.transferFrom(owner, to, amount, { from: spender }));
         }
-        catch (err) { 
-          assert(error.message.search('assert.fail') >= 0); 
+        catch (err) {
+          assert(error.message.search('assert.fail') >= 0);
         }
       });
     });
