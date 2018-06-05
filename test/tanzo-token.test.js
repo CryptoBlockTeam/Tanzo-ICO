@@ -6,6 +6,8 @@ const TanzoToken = artifacts.require("TanzoTokenMock");
 
 const TOTAL_SUPPLY = 500000000 * (10 ** 18);
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
+//Remove the last char from valid address and assign it to SHORT_ADDRESS const
+const SHORT_ADDRESS = '0xdb633765ee4ce0745f4582bae8be2b502cee897';
 
 const ONE_TOKEN = 1000000000000000000
 const TEN_THOUSAND_TOKENS = 10000 * ONE_TOKEN
@@ -36,15 +38,17 @@ contract("TanzoToken", function(accounts) {
     let name = await tanzo.name();
     let symbol = await tanzo.symbol();
     let decimals = await tanzo.decimals();
+    let version = await tanzo.version();
 
     var contractInfo = '';
-    contractInfo ="  " + "+".repeat(40);
+    contractInfo ="  " + "-".repeat(40);
     contractInfo += "\n  " + "Current date is: " + new Date().toLocaleString("en-US", {timeZone: "UTC"});
-    contractInfo += "\n  " + "+".repeat(40);
+    contractInfo += "\n  " + "-".repeat(40);
 
     contractInfo += "\n  Token Name: " + name
     contractInfo += "\n  Token Symbol: " + symbol
     contractInfo += "\n  Decimals: " + decimals
+    contractInfo += "\n  Version: " + version
     contractInfo += "\n  " + "=".repeat(40);
 
   console.log(contractInfo)
@@ -148,7 +152,20 @@ contract("TanzoToken", function(accounts) {
         await assertRevert(tanzo.transfer(to, THOUSAND_TOKENS, { from: owner }));
       });
     });
-  })
+
+    describe('when provide short recipient address', function () {
+      const to = SHORT_ADDRESS;
+
+      it('reverts', async function () {
+        try {
+          await tanzo.transfer(to, THOUSAND_TOKENS, { from: owner });
+        }
+        catch (err) {
+          assert(error.message.search('assert.fail') >= 0);
+        }
+      });
+    });
+  });
 
   describe('Approve', function () {
     before(deploy);
@@ -196,46 +213,6 @@ contract("TanzoToken", function(accounts) {
         });
       });
 
-      describe('when the sender does not have enough balance', function () {
-        const amount = HUNDRED_AND_ONE_TOKENS;
-
-        beforeEach(async function () {
-          await tanzo.approve(spender, 0, { from: owner });
-        });
-
-        it('emits an approval event', async function () {
-          const { logs } = await tanzo.approve(spender, amount, { from: owner });
-
-          eq(logs.length, 1);
-          eq(logs[0].event, 'Approval');
-          eq(logs[0].args.owner, owner);
-          eq(logs[0].args.spender, spender);
-          assert(logs[0].args.value.eq(amount));
-        });
-
-        describe('when there was no approved amount before', function () {
-          it('approves the requested amount', async function () {
-            await tanzo.approve(spender, amount, { from: owner });
-
-            const allowance = await tanzo.allowance(owner, spender);
-            eq(allowance, amount);
-          });
-        });
-
-        describe('when the spender had an approved amount', function () {
-          beforeEach(async function () {
-            await tanzo.approve(spender, 1, { from: owner });
-          });
-
-          it('declines approval if the preveious one is not consumed', async function () {
-            const allowance = await tanzo.allowance(owner, spender);
-            eq(allowance, 1);
-
-            //await tanzo.approve(spender, amount, { from: owner });
-            await assertRevert(tanzo.approve(spender, amount, { from: owner }));
-          });
-        });
-      });
     });
 
     describe('when the spender is the zero address', function () {
@@ -353,6 +330,25 @@ contract("TanzoToken", function(accounts) {
 
       it('reverts', async function () {
         await assertRevert(tanzo.transferFrom(owner, to, amount, { from: spender }));
+      });
+    });
+
+    describe('when provide short recipient address', function () {
+      const amount = TEN_THOUSAND_TOKENS;
+      const to = SHORT_ADDRESS;
+
+      beforeEach(async function () {
+        await tanzo.approve(spender, 0, { from: owner });
+        await tanzo.approve(spender, amount, { from: owner });
+      });
+
+      it('reverts', async function () {
+        try {
+          await (tanzo.transferFrom(owner, to, amount, { from: spender }));
+        }
+        catch (err) {
+          assert(error.message.search('assert.fail') >= 0);
+        }
       });
     });
   });
@@ -473,11 +469,11 @@ contract("TanzoToken", function(accounts) {
 
     it('should not change ownership when the claim is initiated outside defined claim period', async function () {
       await tanzo.transferOwnership(acc1);
-      await tanzo.setLimits(100, 110);
+      await tanzo.setLimits(10, 20);
       let end = await tanzo.end();
-      eq(end, 110);
+      eq(end, 20);
       let start = await tanzo.start();
-      eq(start, 100);
+      eq(start, 10);
       let pendingOwner = await tanzo.pendingOwner();
       eq(pendingOwner, acc1);
       await assertRevert(tanzo.claimOwnership({ from: acc1 }));
