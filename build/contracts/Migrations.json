@@ -64,10 +64,10 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a033316600160a060020a03199091161790556102448061003d6000396000f3006080604052600436106100615763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630900f0108114610066578063445df0ac146100965780638da5cb5b146100bd578063fdacd576146100fb575b600080fd5b34801561007257600080fd5b5061009473ffffffffffffffffffffffffffffffffffffffff60043516610113565b005b3480156100a257600080fd5b506100ab6101c9565b60408051918252519081900360200190f35b3480156100c957600080fd5b506100d26101cf565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b34801561010757600080fd5b506100946004356101eb565b600080543373ffffffffffffffffffffffffffffffffffffffff908116911614156101c5578190508073ffffffffffffffffffffffffffffffffffffffff1663fdacd5766001546040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050600060405180830381600087803b1580156101ac57600080fd5b505af11580156101c0573d6000803e3d6000fd5b505050505b5050565b60015481565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b6000543373ffffffffffffffffffffffffffffffffffffffff908116911614156102155760018190555b505600a165627a7a7230582023c1990d75967841b047eac98e5864901ce3bf4134ed1fd72640fc1a32add3ff0029",
-  "deployedBytecode": "0x6080604052600436106100615763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630900f0108114610066578063445df0ac146100965780638da5cb5b146100bd578063fdacd576146100fb575b600080fd5b34801561007257600080fd5b5061009473ffffffffffffffffffffffffffffffffffffffff60043516610113565b005b3480156100a257600080fd5b506100ab6101c9565b60408051918252519081900360200190f35b3480156100c957600080fd5b506100d26101cf565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b34801561010757600080fd5b506100946004356101eb565b600080543373ffffffffffffffffffffffffffffffffffffffff908116911614156101c5578190508073ffffffffffffffffffffffffffffffffffffffff1663fdacd5766001546040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050600060405180830381600087803b1580156101ac57600080fd5b505af11580156101c0573d6000803e3d6000fd5b505050505b5050565b60015481565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b6000543373ffffffffffffffffffffffffffffffffffffffff908116911614156102155760018190555b505600a165627a7a7230582023c1990d75967841b047eac98e5864901ce3bf4134ed1fd72640fc1a32add3ff0029",
-  "sourceMap": "26:480:0:-;;;178:50;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;205:5:0;:18;;-1:-1:-1;;;;;213:10:0;205:18;-1:-1:-1;;;;;;205:18:0;;;;;;26:480;;;;;;",
-  "deployedSourceMap": "26:480:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;339:165;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;339:165:0;;;;;;;;;74:36;;8:9:-1;5:2;;;30:1;27;20:12;5:2;74:36:0;;;;;;;;;;;;;;;;;;;;50:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;50:20:0;;;;;;;;;;;;;;;;;;;;;;;232:103;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;232:103:0;;;;;339:165;401:19;161:5;;147:10;161:5;147:19;;;161:5;;147:19;143:26;;;434:11;401:45;;452:8;:21;;;474:24;;452:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;452:47:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;452:47:0;;;;143:26;339:165;;:::o;74:36::-;;;;:::o;50:20::-;;;;;;:::o;232:103::-;161:5;;147:10;161:5;147:19;;;161:5;;147:19;143:26;;;294:24;:36;;;143:26;232:103;:::o",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a0319163317905561023c806100326000396000f3006080604052600436106100615763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630900f0108114610066578063445df0ac146100965780638da5cb5b146100bd578063fdacd576146100fb575b600080fd5b34801561007257600080fd5b5061009473ffffffffffffffffffffffffffffffffffffffff60043516610113565b005b3480156100a257600080fd5b506100ab6101c5565b60408051918252519081900360200190f35b3480156100c957600080fd5b506100d26101cb565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b34801561010757600080fd5b506100946004356101e7565b6000805473ffffffffffffffffffffffffffffffffffffffff163314156101c1578190508073ffffffffffffffffffffffffffffffffffffffff1663fdacd5766001546040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050600060405180830381600087803b1580156101a857600080fd5b505af11580156101bc573d6000803e3d6000fd5b505050505b5050565b60015481565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60005473ffffffffffffffffffffffffffffffffffffffff1633141561020d5760018190555b505600a165627a7a72305820e6a4b76d104265538dfc3e5e7c2508fb8e8d126191b716b2ed0e9640892924c00029",
+  "deployedBytecode": "0x6080604052600436106100615763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630900f0108114610066578063445df0ac146100965780638da5cb5b146100bd578063fdacd576146100fb575b600080fd5b34801561007257600080fd5b5061009473ffffffffffffffffffffffffffffffffffffffff60043516610113565b005b3480156100a257600080fd5b506100ab6101c5565b60408051918252519081900360200190f35b3480156100c957600080fd5b506100d26101cb565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b34801561010757600080fd5b506100946004356101e7565b6000805473ffffffffffffffffffffffffffffffffffffffff163314156101c1578190508073ffffffffffffffffffffffffffffffffffffffff1663fdacd5766001546040518263ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040180828152602001915050600060405180830381600087803b1580156101a857600080fd5b505af11580156101bc573d6000803e3d6000fd5b505050505b5050565b60015481565b60005473ffffffffffffffffffffffffffffffffffffffff1681565b60005473ffffffffffffffffffffffffffffffffffffffff1633141561020d5760018190555b505600a165627a7a72305820e6a4b76d104265538dfc3e5e7c2508fb8e8d126191b716b2ed0e9640892924c00029",
+  "sourceMap": "26:480:0:-;;;178:50;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;205:5:0;:18;;-1:-1:-1;;;;;;205:18:0;213:10;205:18;;;26:480;;;;;;",
+  "deployedSourceMap": "26:480:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;339:165;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;339:165:0;;;;;;;;;74:36;;8:9:-1;5:2;;;30:1;27;20:12;5:2;74:36:0;;;;;;;;;;;;;;;;;;;;50:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;50:20:0;;;;;;;;;;;;;;;;;;;;;;;232:103;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;232:103:0;;;;;339:165;401:19;161:5;;;;147:10;:19;143:26;;;434:11;401:45;;452:8;:21;;;474:24;;452:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;452:47:0;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;452:47:0;;;;143:26;339:165;;:::o;74:36::-;;;;:::o;50:20::-;;;;;;:::o;232:103::-;161:5;;;;147:10;:19;143:26;;;294:24;:36;;;143:26;232:103;:::o",
   "source": "pragma solidity ^0.4.23;\n\ncontract Migrations {\n  address public owner;\n  uint public last_completed_migration;\n\n  modifier restricted() {\n    if (msg.sender == owner) _;\n  }\n\n  constructor() public {\n    owner = msg.sender;\n  }\n\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n\n  function upgrade(address new_address) public restricted {\n    Migrations upgraded = Migrations(new_address);\n    upgraded.setCompleted(last_completed_migration);\n  }\n}\n",
   "sourcePath": "D:\\Projects\\ico-platform\\src\\ico-platform-tanzo-contracts\\contracts\\Migrations.sol",
   "ast": {
@@ -182,7 +182,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 992,
+                        "referencedDeclaration": 1027,
                         "src": "147:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -286,7 +286,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 992,
+                        "referencedDeclaration": 1027,
                         "src": "213:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -832,7 +832,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 992,
+                        "referencedDeclaration": 1027,
                         "src": "147:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -936,7 +936,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 992,
+                        "referencedDeclaration": 1027,
                         "src": "213:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -1372,16 +1372,22 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.23+commit.124ca40d.Emscripten.clang"
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x0b1e3e97b41e6b8b0e9a9a92e60de429709ede32",
+      "transactionHash": "0xd8d2f9f425f0b6f0ce1defd8bcdaeb695dac2d07cc856b89c60a496c7b8b2d56"
+    },
     "15": {
       "events": {},
       "links": {},
-      "address": "0x0c276542561d1ee6f0641ad715f1d5d0c6d6ef3e",
-      "transactionHash": "0x7f6b256a50f8ab9facab7a0eb7f69342f6579fd24089da6c978c473cceb8f0e5"
+      "address": "0xc52b1c14b89b59bac004c1d9345d8fc1a1ecde7a",
+      "transactionHash": "0x120425bbcbbd6365cf4a176d432f417d7acd748ba60cfb4d1866d05a33757012"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-17T07:06:03.520Z"
+  "updatedAt": "2018-06-04T14:21:43.301Z"
 }
