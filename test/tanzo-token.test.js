@@ -19,7 +19,7 @@ const FIFTY_TOKENS = 50 * ONE_TOKEN
 contract("TanzoToken", function(accounts) {
 
   before(() => util.measureGas(accounts));
-  after(() => util.measureGas(accounts));
+  // after(() => util.measureGas(accounts));
 
   const eq = assert.equal.bind(assert);
   const owner = accounts[0];
@@ -46,9 +46,9 @@ contract("TanzoToken", function(accounts) {
     contractInfo += "\n  " + "-".repeat(40);
 
     contractInfo += "\n  Token Name: " + name
-    contractInfo += "\n  Token Symbol: " + symbol
+    contractInfo += "     |  Token Symbol: " + symbol
     contractInfo += "\n  Decimals: " + decimals
-    contractInfo += "\n  Version: " + version
+    contractInfo += "                |  Version: " + version
     contractInfo += "\n  " + "=".repeat(40);
 
   console.log(contractInfo)

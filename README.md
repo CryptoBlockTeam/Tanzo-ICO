@@ -1,24 +1,21 @@
-Install dependencies
-```bash
-npm install
-```
+# Tanzo TZO Token
 
-Start test ethereum netrwork
-```bash
-npm run ganache
-```
+This is implementation of ERC20 TZO token.
 
-Compile contracts
-```bash
-npm build
-```
+Implementation supports also following protections:
+- Freeze and UnFreeze transfers
+- Short address protection
+- Claim tokens
 
-Deploy contracts
-```bash
-npm run migrate
-```
+## Implementation
 
-Run unit tests
-```bash
-npm test
-```
+The TZO token system is implemented using Solidity, the most widely used high level language targeting the EVM. 
+
+### Test Results
+
+Following is test results that we have
+
+![TZO test results](docs/test-results.png)
+  
+
+#### Copyright &copy; 2018 Tanzo Ltd.
