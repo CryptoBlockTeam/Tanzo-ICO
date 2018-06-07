@@ -1,5 +1,15 @@
-var HDWalletProvider = require("truffle-hdwallet-provider");
-var mnemonic = "one cook possible system olympic entire lava stage dust casual client member";
+const Web3 = require("web3");
+const web3 = new Web3();
+const WalletProvider = require("truffle-wallet-provider");
+const Wallet = require('ethereumjs-wallet');
+
+var privateNetPrivateKey = new Buffer("", "hex")
+var privateNetWallet = Wallet.fromPrivateKey(privateNetPrivateKey);
+var privateNetProvider = new WalletProvider(privateNetWallet, "http://10.128.1.248:8545");
+
+var mainNetPrivateKey = new Buffer("", "hex")
+var mainNetWallet = Wallet.fromPrivateKey(mainNetPrivateKey);
+var mainNetProvider = new WalletProvider(mainNetWallet, "https://mainnet.infura.io/");
 
 module.exports = {
   networks: {
@@ -8,20 +18,22 @@ module.exports = {
       port: 8545,
       network_id: "*"
     },
-    mainnet: {
-      host: 'localhost',
-      port: 8546,
-      network_id: 1,
-      gas: 4500000,
-      gasPrice: 10000000000
+    parity: {
+      host: "10.128.1.78",
+      port: 8545,
+      network_id: "*"
     },
-    ropsten: {
-      provider: function() {
-        return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/5BwKKArg3f1tu4Rk0LZD")
-      },
-      network_id: '3',
-      gas: 4500000,
-      gasPrice: 150000000000
+    privatenet: {
+      provider: privateNetProvider,
+      gas: 4600000,
+      gasPrice: web3.toWei("15", "gwei"),
+      network_id: "15"
+    },
+    mainnet: {
+      provider: mainNetProvider,
+      gas: 7984340,
+      gasPrice: web3.toWei("15", "gwei"),
+      network_id: "1"
     },
     coverage: {
       host: "localhost",

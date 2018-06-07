@@ -20,5 +20,9 @@ Following is test results that we have
 
 ![TZO test results](docs/test-results.png)
   
+  
+## Authors
 
-#### Copyright © 2018 Tanzo Ltd.
+[![Powered by NewCryptoBlock](images/newcryptoblock.png)](https://www.newcryptoblock.io)
+
+#### Copyright Â© 2018 Tanzo Ltd.
